@@ -9,22 +9,15 @@ MASTER_ADDR=${MASTER_ADDR:-"127.0.0.1"}
 
 PYTHONPATH="$(dirname $0)/..":$PYTHONPATH \
 python -m torch.distributed.launch \
-    --nnodes=$NNODES \
-    --node_rank=$NODE_RANK \
+    --nnodes=$NNODES \  # 所有的结点总数
+    --node_rank=$NODE_RANK \  # 每个结点对应的序号，例如：0或1或2。
     --master_addr=$MASTER_ADDR \
-    --nproc_per_node=$GPUS \
+    --nproc_per_node=$GPUS \  # 每个结点开启的进程数。
     --master_port=$PORT \
     $(dirname "$0")/train.py \
     $CONFIG \
     --seed 0 \
-    --launcher pytorch ${@:3}
-
-
-# --nnodes=$NNODES \  # 所有的结点总数
-# --node_rank=$NODE_RANK \  # 每个结点对应的序号，例如：0或1或2。
-# --master_addr=$MASTER_ADDR \
-# --nproc_per_node=$GPUS \  # 每个结点开启的进程数。
-
+    --launcher pytorch ${@:3}  # 使用的环境，这里使用pytorch
 
 # # 将下面的命令输入bash，也可正常运行
 # python -m torch.distributed.launch \

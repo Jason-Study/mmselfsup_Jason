@@ -51,7 +51,7 @@ class ResNet(_ResNet):
         >>> self = ResNet(depth=18)
         >>> self.eval()
         >>> inputs = torch.rand(1, 3, 32, 32)
-        >>> level_outputs = self.forward(inputs)
+        >>> level_outputs = self.forward(inputs,,
         >>> for level_out in level_outputs:
         ...     print(tuple(level_out.shape))
         (1, 64, 8, 8)

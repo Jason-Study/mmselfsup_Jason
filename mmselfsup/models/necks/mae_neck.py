@@ -37,7 +37,7 @@ class MAEPretrainDecoder(BaseModule):
         >>> self.eval()
         >>> inputs = torch.rand(1, 50, 1024)
         >>> ids_restore = torch.arange(0, 196).unsqueeze(0)
-        >>> level_outputs = self.forward(inputs, ids_restore)
+        >>> level_outputs = self.forward(inputs,ids_restore,)
         >>> print(tuple(level_outputs.shape))
         (1, 196, 768)
     """
